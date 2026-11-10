@@ -124,6 +124,8 @@
   .submit-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:9999px;padding:15px 34px;font:700 16px/1 var(--sans);cursor:pointer;border:none;background:var(--cinnabar);color:#fff;min-height:48px;transition:background .2s,transform .2s;width:100%}
   .submit-btn:hover{background:var(--cinnabar-deep);transform:translateY(-1px)}
   .form-note{font-size:13px;color:var(--ink-3);margin-top:14px;line-height:1.6}
+  .gform-card{background:var(--surface);color:var(--ink);border-radius:20px;padding:14px;max-width:760px;overflow:hidden}
+  .gform{display:block;width:100%;height:760px;border:0;border-radius:12px}
   .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
   /* success */
@@ -242,62 +244,10 @@
     <h2 class="h2"><span class="zh">告诉我们你是谁</span><span class="en">Tell us who you are</span></h2>
     <p class="lead"><span class="zh">填好下面这些，发给我们。没有标准答案，真诚就行。我们读每一封。</span><span class="en">Fill in the bits below and send them over. No right answers—just be real. We read every one.</span></p>
 
-    <form class="form" id="joinForm" novalidate>
-      <div class="field" id="f-track">
-        <label><span class="zh">你想以哪种方式参与<span class="req">*</span></span><span class="en">How do you want to join?<span class="req">*</span></span></label>
-        <div class="pick-row">
-          <label class="pick-card sel" data-track="partner">
-            <input type="radio" name="track" value="partner" checked />
-            <span class="pc-tg">PARTNER</span>
-            <span class="pc-h"><span class="zh">伙伴</span><span class="en">Partner</span></span>
-          </label>
-          <label class="pick-card" data-track="cocreator">
-            <input type="radio" name="track" value="cocreator" />
-            <span class="pc-tg">CO-CREATOR</span>
-            <span class="pc-h"><span class="zh">共创者</span><span class="en">Co-creator</span></span>
-          </label>
-          <label class="pick-card" data-track="supporter">
-            <input type="radio" name="track" value="supporter" />
-            <span class="pc-tg">SUPPORTER</span>
-            <span class="pc-h"><span class="zh">支持者</span><span class="en">Supporter</span></span>
-          </label>
-        </div>
-        <div class="err-msg"><span class="zh">请选择一种参与方式</span><span class="en">Please pick a way to join</span></div>
-      </div>
-
-      <div class="field" id="f-name">
-        <label for="name"><span class="zh">你的称呼<span class="req">*</span></span><span class="en">Your name<span class="req">*</span></span></label>
-        <input type="text" id="name" name="name" autocomplete="name" placeholder="怎么称呼你？" />
-        <div class="err-msg"><span class="zh">总得有个称呼吧</span><span class="en">We need something to call you</span></div>
-      </div>
-
-      <div class="field" id="f-email">
-        <label for="email"><span class="zh">邮箱<span class="req">*</span></span><span class="en">Email<span class="req">*</span></span></label>
-        <input type="email" id="email" name="email" autocomplete="email" placeholder="name@example.com" />
-        <div class="err-msg"><span class="zh">邮箱看起来不太对</span><span class="en">That email doesn't look right</span></div>
-      </div>
-
-      <div class="field">
-        <label for="contact"><span class="zh">微信 / 其他联系方式（选填）</span><span class="en">WeChat / other contact (optional)</span></label>
-        <input type="text" id="contact" name="contact" placeholder="@weixin / Telegram / …" />
-      </div>
-
-      <div class="field">
-        <label for="msg"><span class="zh">想对我们说点什么（选填）</span><span class="en">Anything you'd like to say (optional)</span></label>
-        <textarea id="msg" name="msg" placeholder="你的想法、资源、想一起做的事……"></textarea>
-      </div>
-
-      <div class="honeypot" aria-hidden="true"><label>公司 Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
-
-      <button type="submit" class="submit-btn"><span class="zh">发送 →</span><span class="en">Send →</span></button>
-      <p class="form-note"><span class="zh">提交即表示你同意我们用电邮回复你。我们不会把你的信息给任何人。</span><span class="en">Submitting means we may reply by email. We won't share your info with anyone.</span></p>
-    </form>
-
-    <div class="success" id="success">
-      <div class="ok">✓</div>
-      <h3><span class="zh">收到了，谢谢你</span><span class="en">Got it—thank you</span></h3>
-      <p><span class="zh">我们已经看到你的留言，会尽快回你。名字背后，是被认真对待的尊严。</span><span class="en">We've seen your note and will get back to you soon. Behind every name is the dignity of being taken seriously.</span></p>
+    <div class="gform-card">
+      <iframe class="gform" src="https://docs.google.com/forms/d/e/1FAIpQLSe5a7tOigPKWwmRxvqfehL63DuWyY1XzfhqRnZ2_4G3OddT-Q/viewform?embedded=true" title="加入我们 / Join us" loading="lazy">正在加载…</iframe>
     </div>
+    <p class="form-note"><span class="zh">提交后我们会用邮件回复你。我们不会把你的信息给任何人。</span><span class="en">We'll reply by email after you submit. We won't share your info with anyone.</span></p>
   </div>
 </section>
 
@@ -371,59 +321,7 @@
   },{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  // track card selection (visual)
-  var cards=document.querySelectorAll('.pick-card');
-  cards.forEach(function(c){
-    c.addEventListener('click',function(){
-      cards.forEach(function(x){x.classList.remove('sel')});
-      c.classList.add('sel');
-      var inp=c.querySelector('input'); if(inp){inp.checked=true;}
-    });
-  });
-
-  // form submit
-  // —— 后端接入点：留空则用 mailto 兜底；填入你的表单服务(Formspree 等)地址即改为 POST JSON ——
-  var FORM_ENDPOINT = "";
-  var TO_EMAIL = "Eric.Jiang@cnname.top";
-  var form=document.getElementById('joinForm');
-  var success=document.getElementById('success');
-  function mark(id,bad){ document.getElementById(id).classList.toggle('invalid',bad); }
-  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var track=form.track.value;
-    var name=form.name.value.trim();
-    var email=form.email.value.trim();
-    var ok=true;
-    if(!track){ mark('f-track',true); ok=false; } else mark('f-track',false);
-    if(!name){ mark('f-name',true); ok=false; } else mark('f-name',false);
-    if(!isEmail(email)){ mark('f-email',true); ok=false; } else mark('f-email',false);
-    if(!ok) return;
-
-    var contact=form.contact.value.trim();
-    var msg=form.msg.value.trim();
-    var hp=form.company.value.trim();          // 蜜罐：机器人填了就丢弃
-    if(hp) return;
-
-    var subjectMap={partner:'投资/合作意向 · ',cocreator:'合作意向 · ',supporter:'支持 · '};
-    var labelMap={partner:'伙伴 Partner',cocreator:'共创者 Co-creator',supporter:'支持者 Supporter'};
-    var subject=subjectMap[track]+name;
-    var body='参与方式 / Way: '+labelMap[track]+'\n'
-            +'称呼 / Name: '+name+'\n'
-            +'邮箱 / Email: '+email+'\n'
-            +'其他联系 / Other: '+(contact||'-')+'\n\n'
-            +'留言 / Message:\n'+(msg||'-')+'\n\n'
-            +'—— 来自中文名大师加入页面 / sent from Chinese Name Master join page';
-
-    if(FORM_ENDPOINT){
-      fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({track:labelMap[track],name:name,email:email,contact:contact,msg:msg})})
-        .then(function(){ form.style.display='none'; success.classList.add('show'); })
-        .catch(function(){ window.location.href='mailto:'+TO_EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body); });
-    } else {
-      window.location.href='mailto:'+TO_EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-      form.style.display='none'; success.classList.add('show');
-    }
-  });
+  // 表单已改为 Google 表单嵌入（iframe），无需前端提交逻辑
 })();
 </script>
 </body>
