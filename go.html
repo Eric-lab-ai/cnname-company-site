@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Opening Chinese Name Master…</title>
+<link rel="icon" href="seal-dragon.webp" type="image/webp" />
+<style>
+  :root{
+    --canvas:#F7F1E6; --surface:#FFFCF5; --ink:#241C16; --ink-2:#5C5246; --ink-3:#9A8C7A;
+    --line:#E2D6C2; --green:#1E6B4F; --cinnabar:#C0392B;
+    --serif:"Noto Serif SC",serif; --sans:system-ui,"PingFang SC","Noto Sans SC",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--canvas);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+  main{max-width:560px;margin:0 auto;padding:14vh 24px 60px;text-align:center}
+  .seal{width:72px;height:72px;opacity:.9}
+  .kick{margin-top:22px;font:600 11px/1 var(--mono);letter-spacing:.18em;color:var(--cinnabar);text-transform:uppercase}
+  h1{margin-top:14px;font-family:var(--serif);font-weight:700;font-size:clamp(24px,4vw,34px);line-height:1.35}
+  .sub{margin-top:14px;font-size:16px;color:var(--ink-2)}
+  .hint{margin-top:34px;font-size:12px;color:var(--ink-3)}
+  .card{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left}
+  .debug{white-space:pre-wrap;word-break:break-all;font:12px/1.7 var(--mono);color:var(--ink-2)}
+  .card .lab{font:600 11px/1 var(--mono);letter-spacing:.14em;color:var(--green);text-transform:uppercase;margin-bottom:10px}
+</style>
+</head>
+<body>
+<main>
+  <img class="seal" src="seal-dragon.webp" alt="" onerror="this.style.display='none'" />
+  <p class="kick">Chinese Name Master</p>
+  <h1>Opening your Chinese name…</h1>
+  <p class="sub">Taking you to the free name tool. <a id="manual" href="https://www.cnname.top/">Open it manually ↗</a></p>
+  <p class="hint">正在打开中文名大师 · 若未自动跳转，请点上方链接</p>
+  <div id="debug" class="card" hidden><div class="lab">Debug · no redirect</div><div id="debugText" class="debug"></div></div>
+</main>
+<noscript><p style="text-align:center;font-size:15px"><a href="https://www.cnname.top/?utm_source=direct&amp;utm_medium=social&amp;utm_campaign=free_test">Open Chinese Name Master ↗</a></p></noscript>
+
+<script>
+/*
+  统一短链跳转页 · 2 周免费验证用
+  用法：https://company.cnname.top/go.html?s=<平台>&m=<位置>&c=<活动>&p=<内容编号>
+  参数全部可选，缺省值见下；加 &debug=1 可只显示生成的目标链接、不跳转（便于核对）。
+
+  点击统计（免费）：
+  A) 最省事 —— 用 Bitly 免费版缩短本页链接，点击数在 Bitly 后台按平台看。
+  B) 有自建/Plausible 端点 —— 把 TRACK_ENDPOINT 填上，本页用 sendBeacon 发一条点击事件后跳转。
+  C) 都不接 —— 本页仍正常跳转，但点击数只能靠 Vercel 请求日志或产品站分析。
+  注意：UTM 最终落在产品站 www.cnname.top，需产品站装了 GA4/Plausible 才能看到「来源」维度；
+        否则本页/Bitly 的点击数就是本轮唯一的来源数据。
+*/
+(function(){
+  var DEST = 'https://www.cnname.top/';
+  var CAMPAIGN_DEFAULT = 'free_test';
+  var TRACK_ENDPOINT = '';   // 例：'https://your-endpoint.example/collect'；留空 = 不发送
+
+  var SOURCES = {reddit:1,tiktok:1,instagram:1,youtube:1,x:1,twitter:1,pinterest:1,
+                 quora:1,medium:1,facebook:1,discord:1,bio:1,direct:1,other:1};
+  var MEDIUMS = {social:1,bio:1,post:1,comment:1,video:1,story:1,referral:1,email:1,other:1};
+
+  var q;
+  try{ q = new URLSearchParams(location.search); }
+  catch(e){ q = {get:function(){return null;}}; }
+
+  function clean(v, fallback, max){
+    v = (v||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0, max||40);
+    return v || fallback;
+  }
+  var s = clean(q.get('s'),'direct',24); if(!SOURCES[s]) s = 'other';
+  var m = clean(q.get('m'),'social',24); if(!MEDIUMS[m]) m = 'other';
+  var c = clean(q.get('c'),CAMPAIGN_DEFAULT,40);
+  var p = clean(q.get('p'),'',64);
+
+  var parts = [
+    'utm_source='   + encodeURIComponent(s),
+    'utm_medium='   + encodeURIComponent(m),
+    'utm_campaign=' + encodeURIComponent(c)
+  ];
+  if(p) parts.push('utm_content=' + encodeURIComponent(p));
+  var target = DEST + '?' + parts.join('&');
+
+  document.getElementById('manual').href = target;
+
+  if(q.get('debug') === '1'){
+    document.getElementById('debug').hidden = false;
+    document.getElementById('debugText').textContent =
+      target + '\n\n' +
+      'source=' + s + '   medium=' + m + '   campaign=' + c + (p ? '   content=' + p : '');
+    return;
+  }
+
+  if(TRACK_ENDPOINT && navigator.sendBeacon){
+    try{
+      var payload = new Blob([JSON.stringify({
+        source:s, medium:m, campaign:c, content:p,
+        ts:Date.now(), ref:document.referrer
+      })], {type:'application/json'});
+      navigator.sendBeacon(TRACK_ENDPOINT, payload);
+    }catch(e){}
+  }
+
+  // replace 而非 assign：避免用户按返回键又回到本页形成死循环
+  location.replace(target);
+})();
+</script>
+</body>
+</html>

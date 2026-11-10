@@ -600,7 +600,13 @@
     toggle.textContent = en ? '中' : 'EN';
     try{localStorage.setItem('cnm-lang',lang);}catch(e){}
     if(syncURL!==false){
-      try{ history.replaceState(null,'', en ? (location.pathname+'?lang=en') : location.pathname); }catch(e){}
+      // 只增删 lang，保留 UTM 等其它查询参数（社媒来源追踪依赖这些参数，不可整体重写 URL）
+      try{
+        var p=new URLSearchParams(location.search);
+        if(en){ p.set('lang','en'); }else{ p.delete('lang'); }
+        var q=p.toString();
+        history.replaceState(null,'', location.pathname+(q?'?'+q:'')+location.hash);
+      }catch(e){}
     }
   }
   var urlLang=getURLLang();
