@@ -189,13 +189,19 @@
   .pd b{color:var(--ink);font-weight:700}
   .royal{background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px}
   .royal .rh{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:13px}
-  .royal .chain{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
-  .royal .gen{flex:1 1 0;min-width:78px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:11px 6px;background:var(--canvas-2)}
+  /* 窄屏：三个框竖直居中堆叠，箭头朝下；宽屏：一排三个居中 */
+  .royal .chain{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  .royal .gen{flex:0 0 auto;width:100%;max-width:220px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:11px 6px;background:var(--canvas-2)}
   .royal .gn{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--ink);line-height:1.1}
   .royal .gn em{font-style:normal;color:var(--cinnabar)}
   .royal .gt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3);margin-top:6px}
-  .royal .arrow2{color:var(--line-strong);font-size:15px;flex:0 0 auto}
+  .royal .arrow2{color:var(--line-strong);font-size:15px;flex:0 0 auto;transform:rotate(90deg)}
   .royal .note{font-size:12px;color:var(--ink-2);margin-top:12px;line-height:1.6}
+  @media(min-width:600px){
+    .royal .chain{flex-direction:row;align-items:center;gap:5px}
+    .royal .gen{flex:1 1 0;width:auto;max-width:none;min-width:78px}
+    .royal .arrow2{transform:none}
+  }
 
   /* 东↔西 双面板 */
   .ew{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px}
