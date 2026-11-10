@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>document.documentElement.classList.add('js');</script>
 <title>中文名大师 · 一个帮世界取中文名的地方 / Chinese Name Master</title>
 <meta name="description" content="中文名大师（Chinese Name Master）是一群较真的人。我们为全世界非中文母语者，取一个像自己、敢晒出来的中文名。这里不讲大词，只讲一个名字带来的改变。" />
 <meta name="robots" content="index,follow" />
@@ -149,11 +150,6 @@
   .persist .ph{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
   .persist .pt{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.4;margin-bottom:8px}
   .persist .pd{font-size:14px;color:var(--ink-2);line-height:1.75}
-  .stats{display:flex;gap:16px;margin-top:30px}
-  .stat{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center;position:relative}
-  .stat .n{font-family:var(--serif);font-weight:700;font-size:42px;color:var(--cinnabar);line-height:1}
-  .stat::after{content:"";position:absolute;top:14px;right:14px;width:7px;height:7px;border-radius:9999px;background:var(--coral)}
-  .stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3);margin-top:10px;text-transform:uppercase}
   .depth{margin-top:30px;display:flex;flex-direction:column;gap:4px}
   .depth .d{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
   .depth .d:last-of-type{border-bottom:none}
@@ -273,7 +269,8 @@
   .foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:44px;padding-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#8fa79a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   /* ===== REVEAL ===== */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal{transition:opacity .7s ease,transform .7s ease}
+  .js .reveal{opacity:0;transform:translateY(22px)}
   .reveal.in{opacity:1;transform:none}
 
   /* ===== RESPONSIVE ===== */
@@ -296,7 +293,6 @@
     .btn-row{flex-direction:column}
     .namecard{flex-wrap:wrap}
     .namecard .seal{margin-left:0}
-    .stats{flex-direction:column}
   }
 </style>
 <script type="application/ld+json">
@@ -340,7 +336,7 @@
   <div class="wrap">
     <div class="kick"><span class="zh">为全球取一个中文名</span><span class="en">A NAME FOR THE WORLD</span></div>
     <h1><span class="zh">我是 Eric，在中国留学，我最常被问的问题是：你叫什么名字<span class="dot">？</span></span><span class="en">I'm Eric, studying in China. The question I get asked most is: what's your name<span class="dot">?</span></span></h1>
-    <p class="lead"><span class="zh">当我说我有中文名时，他们都很惊讶。所以我向你推荐中文名大师（Chinese Name Master）——可以帮你设计一个和你最匹配的中文名字，当你有了它以后，一切都在改变。</span><span class="en">When I tell them I have a Chinese name, they're always surprised. So I recommend Chinese Name Master to you—it can design a Chinese name that fits you best, and once you have it, everything changes.</span></p>
+    <p class="lead"><span class="zh">当我说我有中文名时，他们都很惊讶。所以我向你推荐中文名大师——可以帮你设计一个和你最匹配的中文名字，当你有了它以后，一切都在改变。</span><span class="en">When I tell them I have a Chinese name, they're always surprised. So I recommend Chinese Name Master to you—it can design a Chinese name that fits you best, and once you have it, everything changes.</span></p>
     <div class="btn-row">
       <a class="btn btn-fire" href="https://www.cnname.top"><span class="zh">去取一个名字 ↗</span><span class="en">Get a name ↗</span></a>
       <a class="btn btn-ghost" href="#join"><span class="zh">你想参与？ →</span><span class="en">Want to join? →</span></a>
@@ -456,7 +452,7 @@
         <div class="bubble user">
           <div class="face">马</div>
           <div>
-            <div class="body"><span class="zh">他张嘴就说了 <span class="py">mǎ kè</span>。</span><span class="en">He opened his mouth and said "<span class="py">Mǎkè</span>" right away.</span></div>
+            <div class="body"><span class="zh">他张嘴就说了 <span class="py">Mǎkè</span>。</span><span class="en">He opened his mouth and said "<span class="py">Mǎkè</span>" right away.</span></div>
             <div class="who"><span class="zh">— 马克，第一次来上海</span><span class="en">— Mǎkè, visiting Shanghai for the first time</span></div>
           </div>
         </div>
@@ -488,7 +484,7 @@
         <div>
           <div class="nmwrap">
             <div class="nm">马克</div>
-            <div class="meta">MǍ KÈ</div>
+            <div class="meta">Mǎkè</div>
           </div>
           <div class="mean"><span class="zh">如马自在，行稳致远——德国留学生取完后，第二天就把「马克」设成了社交账号名，从此自然地融进了中文网友的视线里。</span><span class="en">Free as a horse at ease, steady toward the far—a name a German exchange student set as his social handle the next day, and from then on it slipped, naturally, into his Chinese-speaking world.</span></div>
         </div>
@@ -583,7 +579,7 @@
 <!-- ============ 我们打算走多远 ============ -->
 <section class="act" id="road">
   <div class="wrap reveal">
-    <div class="idx"><span class="zh">05 — 我们打算走多远</span><span class="en">ACT 5 — HOW FAR WE'LL GO</span></div>
+    <div class="idx"><span class="zh">05 — 路线图 · 我们打算走多远</span><span class="en">ROADMAP — HOW FAR WE'LL GO</span></div>
     <h2 class="h2"><span class="zh">把取中文名，变成一件自然的事</span><span class="en">Making a Chinese name feel like second nature</span></h2>
     <div class="tl">
       <div class="node"><div class="yr"><span class="zh">2026年9月</span><span class="en">Sep 2026</span></div><div class="nt"><span class="zh">中文名大师上线</span><span class="en">Chinese Name Master launches</span></div><div class="nd"><span class="zh">双语覆盖，架起东西方文化桥梁。</span><span class="en">Bilingual. Building a cultural bridge between East and West.</span></div></div>
@@ -626,7 +622,7 @@
 <!-- ============ 信任 ============ -->
 <section class="act" id="trust">
   <div class="wrap reveal">
-    <div class="idx"><span class="zh">06 — 你可以放心</span><span class="en">ACT 6 — YOU CAN TRUST US</span></div>
+    <div class="idx"><span class="zh">06 — 信任 · 你可以放心</span><span class="en">TRUST — YOU CAN TRUST US</span></div>
     <h2 class="h2"><span class="zh">认真，是一种态度，也是底线</span><span class="en">Being serious is an attitude—and a bottom line</span></h2>
     <div class="trust-grid">
       <div class="tc"><div class="ck"><span class="zh">隐私透明</span><span class="en">Privacy, transparent</span></div><div class="tt"><span class="zh">数据你做主</span><span class="en">You own your data</span></div><div class="td"><span class="zh">我们收集什么、用来做什么，写得清楚，不藏话。</span><span class="en">What we collect and what we do with it—written clearly, nothing hidden.</span></div></div>
@@ -710,25 +706,6 @@
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   },{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-  // count-up
-  var counted=false;
-  function runCount(){
-    if(counted) return; counted=true;
-    document.querySelectorAll('.stat .n').forEach(function(el){
-      var target=parseInt(el.getAttribute('data-count'),10); var cur=0;
-      var step=Math.max(1,Math.ceil(target/28));
-      var t=setInterval(function(){
-        cur+=step; if(cur>=target){cur=target;clearInterval(t);}
-        el.textContent=cur;
-      },28);
-    });
-  }
-  var statBox=document.querySelector('#act4');
-  if(statBox){
-    var so=new IntersectionObserver(function(en){ if(en[0].isIntersecting){ runCount(); so.disconnect(); } },{threshold:0.3});
-    so.observe(statBox);
-  }
 })();
 </script>
 </body>
