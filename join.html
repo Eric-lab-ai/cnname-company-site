@@ -56,7 +56,6 @@
   .nav.scrolled{background:rgba(247,241,230,.9);backdrop-filter:blur(12px);box-shadow:0 6px 24px -18px rgba(36,28,22,.5);padding:11px 32px;border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:18px;color:var(--ink);letter-spacing:.01em}
   .brand img{width:32px;height:32px;flex:0 0 auto}
-  .brand .b-en{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--green);font-weight:600;text-transform:uppercase;margin-left:2px}
   .nav-right{display:flex;align-items:center;gap:22px}
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{font-size:15px;color:var(--ink);font-weight:500;position:relative;padding:4px 0}
@@ -71,17 +70,21 @@
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
   .idx{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:18px}
   .idx::before{content:"";width:26px;height:1px;background:var(--green)}
-  .h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.5vw,44px);line-height:1.22;letter-spacing:.01em}
-  .lead{font-size:17px;color:var(--ink-2);line-height:1.85;max-width:60ch}
+  .h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.5vw,44px);line-height:1.22;letter-spacing:.01em;max-width:20em;margin-bottom:16px}
+  body.lang-en .h2{max-width:58ch}
+  .lead{font-size:18px;color:var(--ink-2);line-height:1.85;max-width:56em;text-wrap:pretty}
+  body.lang-en .lead{max-width:118ch}
 
   /* ===== HERO ===== */
   .hero{position:relative;padding:150px 0 70px;background:var(--canvas);overflow:hidden}
   .hero .wrap{position:relative;z-index:2}
   .hero .stamp{width:60px;height:60px;margin-bottom:22px;filter:drop-shadow(0 2px 14px rgba(192,57,43,.18))}
   .hero .kick{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--cinnabar);text-transform:uppercase;margin-bottom:18px}
-  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5.6vw,60px);line-height:1.24;max-width:18ch;margin-bottom:24px}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5.6vw,60px);line-height:1.24;max-width:18em;margin-bottom:24px}
+  body.lang-en .hero h1{max-width:118ch}
   .hero h1 .dot{color:var(--cinnabar)}
-  .hero .lead{max-width:54ch;font-size:18px}
+  .hero .lead{max-width:60em;font-size:18px;text-wrap:pretty}
+  body.lang-en .hero .lead{max-width:118ch}
   .hero-glow{position:absolute;right:-160px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(30,107,79,.10),transparent 68%);z-index:1;pointer-events:none}
 
   /* ===== TRACK INTRO ===== */
@@ -90,7 +93,7 @@
   .track{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column}
   .track .tg{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
   .track h3{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--ink);margin:8px 0 12px}
-  .track p{font-size:14.5px;color:var(--ink-2);line-height:1.75;flex:1}
+  .track p{font-size:15.5px;color:var(--ink-2);line-height:1.78;flex:1;text-wrap:pretty}
   .track .pick{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--green);font-weight:700}
 
   /* ===== FORM ===== */
@@ -123,7 +126,7 @@
 
   .submit-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:9999px;padding:15px 34px;font:700 16px/1 var(--sans);cursor:pointer;border:none;background:var(--cinnabar);color:#fff;min-height:48px;transition:background .2s,transform .2s;width:100%}
   .submit-btn:hover{background:var(--cinnabar-deep);transform:translateY(-1px)}
-  .form-note{font-size:13px;color:var(--ink-3);margin-top:14px;line-height:1.6}
+  .form-note{font-size:13px;color:var(--ink-3);margin-top:14px;line-height:1.6;text-wrap:pretty}
   .gform-card{background:var(--surface);color:var(--ink);border-radius:20px;padding:14px;max-width:760px;overflow:hidden}
   .gform{display:block;width:100%;height:760px;border:0;border-radius:12px}
   .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -186,7 +189,7 @@
 <nav class="nav" id="nav">
   <a class="brand" href="index.html">
     <img src="seal-dragon.webp" alt="中文名大师" onerror="this.style.display='none'" />
-    <span><span class="zh">中文名大师</span><span class="en">Chinese Name Master</span><span class="b-en">CNM</span></span>
+    <span><span class="zh">中文名大师</span><span class="en">Chinese Name Master</span></span>
   </a>
   <div class="nav-right">
     <div class="nav-links" id="navLinks">
@@ -207,7 +210,7 @@
     <img class="stamp" src="seal-dragon.webp" alt="" onerror="this.style.display='none'" />
     <div class="kick">CHINESE NAME MASTER · JOIN US</div>
     <h1><span class="zh">这里没有旁观者，<br>只有同行的人<span class="dot">。</span></span><span class="en">No spectators here—<br>only people walking with us<span class="dot">.</span></span></h1>
-    <p class="lead"><span class="zh">你也可以是这本书里的人。三种方式，挑一个顺手的——我们欢迎每一种愿意参与的人。</span><span class="en">You could be a character in this story too. Three ways in—pick the one that fits. We welcome everyone willing to take part.</span></p>
+    <p class="lead"><span class="zh">你也可以是这个故事里的人。三种方式，挑一个顺手的——我们欢迎每一种愿意参与的人。</span><span class="en">You could be a character in this story too. Three ways in—pick the one that fits. We welcome everyone willing to take part.</span></p>
   </div>
 </header>
 
