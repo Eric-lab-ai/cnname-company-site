@@ -301,8 +301,10 @@
   var saved=null; try{saved=localStorage.getItem('cnm-lang');}catch(e){}
   if(urlLang){ setLang(urlLang, false); }
   else if(saved){ setLang(saved); }
-  else if(navigator.language && navigator.language.toLowerCase().indexOf('en')===0){ setLang('en'); }
-  else { setLang('zh'); }
+  else {
+    var sys=(navigator.languages&&navigator.languages[0])||navigator.language||'';
+    setLang(sys.toLowerCase().indexOf('zh')===0?'zh':'en');   // 系统语言为中文才用中文，其余一律英文
+  }
   toggle.addEventListener('click',function(){
     setLang(document.body.classList.contains('lang-en')?'zh':'en', true);
   });
